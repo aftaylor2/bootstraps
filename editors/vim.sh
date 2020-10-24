@@ -26,7 +26,8 @@ https://github.com/VundleVim/Vundle.vim.git)
 PLUGINS_DIR=~/.vim/pack/plugins/start
 THEMES_DIR=~/.vim/pack/themes/start
 
-mkdir -p $PLUGINS_DIR
+mkdir -p $PLUGINS_DIR && mkdir -p $THEMES_DIR
+
 cd $THEMES_DIR; cd .. ; ln -s start opt; cd ~
 
 for plugin in ${PLUGINS[@]}; do
