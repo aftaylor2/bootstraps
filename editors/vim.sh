@@ -119,5 +119,4 @@ endfunction
 EOT
 
 # Install Go Binaries for GoLang development in VIM
-vim -c GoInstallBinaries
-
+vim -c GoInstallBinaries -c 'qa!'
