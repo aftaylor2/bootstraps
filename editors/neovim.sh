@@ -215,7 +215,7 @@ let g:airline#extensions#ale#enabled = 1
 
 EOT
 
-# Install Go Binaries for GoLang development in VIM
+# Install Plugins using Vundle
 nvim -c 'PluginInstall' -c 'qa!'
 
 echo "COMPLETED" && exit 0;
