@@ -24,7 +24,7 @@ https://github.com/vimwiki/vimwiki.git
 https://github.com/VundleVim/Vundle.vim.git)
 
 PLUGINS_DIR=~/.vim/pack/plugins/start
-THEMES_DIR=~/.vim/pack/themes/start
+THEMES_DIR=~/.vim/pack/themes
 
 mkdir -p $PLUGINS_DIR && mkdir -p $THEMES_DIR
 
@@ -36,8 +36,12 @@ for plugin in ${PLUGINS[@]}; do
   git clone $plugin $PLUGINS_DIR/$DIR
 done
 
-git clone https://github.com/dracula/vim.git $THEMES_DIR/dracula
+# Active Theme - place in start directory
+git clone https://github.com/dracula/vim.git $THEMES_DIR/start/dracula
 
+# Additional / Optional Themes - not loaded on start - place in opt dir
+git clone https://github.com/trusktr/seti.vim $THEMES_DIR/opt/seti
+git clone https://github.com/gf3/molotov $THEMES_DIR/opt/molotov
 
 mv .vimrc .vimrc.old
 cat <<EOT >> .vimrc
@@ -47,6 +51,7 @@ colorscheme dracula
 filetype plugin on
 " filetype plugin indent on
 
+set nocompatible
 set background=dark
 set colorcolumn=80
 set encoding=UTF-8
