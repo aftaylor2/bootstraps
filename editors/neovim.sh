@@ -58,6 +58,7 @@ call vundle#begin()
     Plugin 'prettier/vim-prettier'                       " Code Formatter
     Plugin 'dense-analysis/ale'                          " Linter
     Plugin 'fatih/vim-go'                                " GoLang Support
+    Plugin 'Yggdroot/indentLine'                         " YAML Vertical line
 
 call vundle#end() " plugins must appear before this line.
 filetype plugin indent on

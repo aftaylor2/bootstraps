@@ -21,7 +21,8 @@ https://github.com/prettier/vim-prettier.git
 https://github.com/frazrepo/vim-rainbow
 https://github.com/tpope/vim-surround
 https://github.com/vimwiki/vimwiki.git
-https://github.com/VundleVim/Vundle.vim.git)
+https://github.com/VundleVim/Vundle.vim.git
+https://github.com/Yggdroot/indentLine.git)
 
 PLUGINS_DIR=~/.vim/pack/plugins/start
 THEMES_DIR=~/.vim/pack/themes/start
