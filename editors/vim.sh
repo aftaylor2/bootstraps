@@ -54,14 +54,19 @@ filetype plugin on
 
 set nocompatible
 set background=dark
+set backspace=indent,eol,start
 set colorcolumn=80
 set encoding=UTF-8
 set cm=blowfish2
 " set mouse=a
-set number
+" set number
 set relativenumber
 set runtimepath^=~/.vim/pack/plugins/start
 set t_Co=256
+set smarttab
+set expandtab
+set tabstop-2
+set shiftwidth=2
 set textwidth=80
 " GitGutter Status + ~ - status bar counts
 set statusline+=%{GitStatus()}
