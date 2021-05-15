@@ -75,6 +75,10 @@ au BufEnter *.js,*.php,*.rs,*.css,*.h,*.html :ColorHighlight<CR>
 au BufRead,BufNewFile *.md,*.js,*.php,*.rs,*.vim,*.vimrc setlocal textwidth=80
 au BufRead,BufNewFile *.hbs,*.handlebars setlocal textwidth=120
 
+" Elixir - format on save
+autocmd BufWritePost *.exs silent :!mix format % 
+autocmd BufWritePost *.ex silent :!mix format %
+
 " Transparent editing of gpg encrypted files.
 augroup encrypted
    au!
