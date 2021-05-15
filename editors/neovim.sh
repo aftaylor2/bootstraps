@@ -59,6 +59,7 @@ call vundle#begin()
     Plugin 'dense-analysis/ale'                          " Linter
     Plugin 'fatih/vim-go'                                " GoLang Support
     Plugin 'Yggdroot/indentLine'                         " YAML Vertical line
+    Plugin 'elixir-editors/vim-elixir'                   " Elixir Support
 
 call vundle#end() " plugins must appear before this line.
 filetype plugin indent on
