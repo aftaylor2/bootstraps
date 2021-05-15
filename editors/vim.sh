@@ -80,6 +80,9 @@ au BufRead,BufNewFile *.hbs,*.handlebars setlocal textwidth=120
 " Elixir - format on save
 autocmd BufWritePost *.exs silent :!mix format % 
 autocmd BufWritePost *.ex silent :!mix format %
+" Elixir - reload buffer after formatting
+autocmd BufWritePost *.ex edit
+autocmd BufWritePost *.ex redraw!
 
 " Transparent editing of gpg encrypted files.
 augroup encrypted
