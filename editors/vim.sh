@@ -67,7 +67,7 @@ set runtimepath^=~/.vim/pack/plugins/start
 set t_Co=256
 set smarttab
 set expandtab
-set tabstop-2
+set tabstop=2
 set shiftwidth=2
 set textwidth=80
 " GitGutter Status + ~ - status bar counts
