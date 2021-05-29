@@ -63,6 +63,8 @@ set cm=blowfish2
 " set mouse=a
 " set number
 set relativenumber
+set noerrorbells
+set scrolloff=8
 set runtimepath^=~/.vim/pack/plugins/start
 set t_Co=256
 set smarttab
@@ -70,6 +72,8 @@ set expandtab
 set tabstop-2
 set shiftwidth=2
 set textwidth=80
+set noswapfile
+set nobackup
 " GitGutter Status + ~ - status bar counts
 set statusline+=%{GitStatus()}
 
