@@ -88,6 +88,7 @@ highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
 set t_Co=256
 syntax enable   
 set number relativenumber
+set nu
 let g:rehash256 = 1
 
 set noshowmode	" prevent non-normal modes showing in and below powerline
