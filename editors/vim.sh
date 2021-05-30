@@ -52,7 +52,6 @@ packadd! dracula
 syntax on
 colorscheme dracula
 filetype plugin on
-" filetype plugin indent on
 
 set nocompatible
 set background=dark
@@ -60,8 +59,6 @@ set backspace=indent,eol,start
 set colorcolumn=80
 set encoding=UTF-8
 set cm=blowfish2
-" set mouse=a
-" set number
 set relativenumber
 set noerrorbells
 set scrolloff=8
@@ -74,8 +71,12 @@ set shiftwidth=2
 set textwidth=80
 set noswapfile
 set nobackup
-" GitGutter Status + ~ - status bar counts
+
 set statusline+=%{GitStatus()}
+
+set incsearch
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 au BufEnter *.js,*.php,*.rs,*.css,*.h,*.html :ColorHighlight<CR>
 au BufRead,BufNewFile *.md,*.js,*.php,*.rs,*.vim,*.vimrc setlocal textwidth=80
