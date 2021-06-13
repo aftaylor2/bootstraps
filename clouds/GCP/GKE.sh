@@ -22,21 +22,20 @@ MACHINE_TYPE=n2-standard-8
 DISK_SIZE_GB=200
 LETSENCRYPT_EMAIL=user@domain.com
 
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Install helm on GNU/Linux - Debian/Ubuntu based systems
     curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
     sudo apt-get install apt-transport-https --yes
-    echo "deb https://baltocdn.com/helm/stable/debian/ all main" | \
-    sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+    echo "deb https://baltocdn.com/helm/stable/debian/ all main" |
+        sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
     sudo apt-get update
     sudo apt-get install helm
-    
-    # Install kubectl
-    # curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl"
-    # chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
-    
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
+
+# Install kubectl
+# curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl"
+# chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Install / Upgrade homebrew
     # export BREW_URL=https://raw.githubusercontent.com/Homebrew/install/master/install.sh)
     # /bin/bash -c "$(curl -fsSL ${BREW_URL}"
@@ -46,40 +45,38 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     brew install helm
 fi
 
-
 gcloud beta container --project "${PROJECT}" clusters create "${CLUSTER}" \
---zone "${ZONE}" \
---no-enable-basic-auth \
---cluster-version "1.17.12-gke.500" \
---machine-type "${MACHINE_TYPE}" \
---image-type "COS" \
---disk-type "pd-ssd" \
---disk-size "${DISK_SIZE_GB}" \
---metadata disable-legacy-endpoints=true \
---scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
---num-nodes "${MIN_NODES}" \
---enable-stackdriver-kubernetes \
---enable-ip-alias \
---network "projects/${PROJECT}/global/networks/default" \
---subnetwork "projects/${PROJECT}/regions/${REGION}/subnetworks/default" \
---default-max-pods-per-node "110" \
---enable-autoscaling \
---min-nodes "${MIN_NODES}" \
---max-nodes "${MAX_NODES}" \
---no-enable-master-authorized-networks \
---addons HorizontalPodAutoscaling,HttpLoadBalancing \
---enable-autoupgrade \
---enable-autorepair \
---max-surge-upgrade 1 \
---max-unavailable-upgrade 0 \
---enable-shielded-nodes
-
+    --zone "${ZONE}" \
+    --no-enable-basic-auth \
+    --cluster-version "1.17.12-gke.500" \
+    --machine-type "${MACHINE_TYPE}" \
+    --image-type "COS" \
+    --disk-type "pd-ssd" \
+    --disk-size "${DISK_SIZE_GB}" \
+    --metadata disable-legacy-endpoints=true \
+    --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
+    --num-nodes "${MIN_NODES}" \
+    --enable-stackdriver-kubernetes \
+    --enable-ip-alias \
+    --network "projects/${PROJECT}/global/networks/default" \
+    --subnetwork "projects/${PROJECT}/regions/${REGION}/subnetworks/default" \
+    --default-max-pods-per-node "110" \
+    --enable-autoscaling \
+    --min-nodes "${MIN_NODES}" \
+    --max-nodes "${MAX_NODES}" \
+    --no-enable-master-authorized-networks \
+    --addons HorizontalPodAutoscaling,HttpLoadBalancing \
+    --enable-autoupgrade \
+    --enable-autorepair \
+    --max-surge-upgrade 1 \
+    --max-unavailable-upgrade 0 \
+    --enable-shielded-nodes
 
 gcloud container clusters get-credentials $CLUSTER --zone $ZONE--project $PROJECT
 
 kubectl create clusterrolebinding cluster-admin-binding \
---clusterrole cluster-admin \
---user $(gcloud config get-value account)
+    --clusterrole cluster-admin \
+    --user $(gcloud config get-value account)
 
 # Deploy nginx Ingress Controller
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -96,7 +93,7 @@ LB_IP=$(kubectl get svc -n default | grep ingress-nginx-controller | grep LoadBa
 echo 'Load Balancer Public IP:' ${LB_IP}
 echo 'Create DNS A records for hosts that need HTTPS Ingress. Use ./dnsAdd.sh script'
 
-cat <<EOF > clusterissuer-prod.yaml
+cat <<EOF >clusterissuer-prod.yaml
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
