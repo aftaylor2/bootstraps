@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Install & Configure PM2 + LetsEncrypt
 # NOTE: Should be used on VMs and not in containers
-
+##############################################################################
 # TODO:
 # Add optional Nginx + PM2 setup
 # https://pm2.keymetrics.io/docs/tutorials/pm2-nginx-production-setup
+##############################################################################
 
 usage() {
     cat - >&2 <<EOF
