@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:24.04
 LABEL org.opencontainers.image.authors=aftaylor2@gmail.com
 LABEL org.opencontainers.image.title="NeoVim - LunarVim"
 LABEL org.opencontainers.image.licenses=UNLICENSED
